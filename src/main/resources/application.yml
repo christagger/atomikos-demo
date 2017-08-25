@@ -1,0 +1,44 @@
+---
+spring:
+  profiles: default
+  application:
+    name: atomikosdemo
+
+server:
+  port: 8090
+
+database:
+  prop:
+    minPoolSize: 3
+    maxPoolSize: 25
+    maxLifetime: 20000
+    borrowConnectionTimeout: 30
+    loginTimeout: 30
+    maintenanceInterval: 60
+    maxIdleTime: 60
+    testQuery: select 1 from dual
+    defaultDataSourceUniqueRersourceName: ds2
+  dataSources:
+    - uniqueResourceName: ds1
+      url: jdbc:mysql://localhost:3306/ds1
+      username: user1
+      password: user1
+    - uniqueResourceName: ds2
+      url: jdbc:mysql://localhost:3306/ds2
+      username: user2
+      password: user2
+
+swagger:
+  basePackage: com.qx.test.atomikosdemo.controller
+
+logging:
+  level:
+    ROOT: 'INFO'
+  file: 'F:\\atomokosdemo\\atomokosdemo.log'
+  fileappender:
+    pattern:
+      out: '%date %level [%thread] %logger{10} [%file:%line] %msg%n'
+      filename: '.%d{yyyy-MM-dd}.%i'
+    maxhistory: 30
+    maxfilesize: 50MB
+
